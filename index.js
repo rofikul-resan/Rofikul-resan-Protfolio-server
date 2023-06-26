@@ -81,7 +81,11 @@ async function run() {
 
     app.get("/best", async (req, res) => {
       const query = { projectType: "best" };
-      const result = await projectCollocation.find(query).limit(3).toArray();
+      const result = await projectCollocation
+        .find(query)
+        .sort({ _id: -1 })
+        .limit(3)
+        .toArray();
       res.send(result);
     });
 
