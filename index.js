@@ -79,6 +79,12 @@ async function run() {
       }
     });
 
+    app.get("/best", async (req, res) => {
+      const query = { projectType: "best" };
+      const result = await projectCollocation.find(query).limit(3).toArray();
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
